@@ -1,0 +1,14 @@
+{
+  "name": "uid-bypass-bot",
+  "version": "1.0.0",
+  "description": "Discord Bot for automated UID Whitelisting",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.0",
+    "discord.js": "^14.14.0",
+    "dotenv": "^16.4.5"
+  }
+}
