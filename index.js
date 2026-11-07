@@ -1,8 +1,21 @@
 const { Client, GatewayIntentBits, EmbedBuilder, REST, Routes, SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const axios = require('axios');
+const express = require('express'); // Added for 24/7 uptime
 
-const DISCORD_TOKEN = "MTU2Nzg5MzczMTM1MTQ2NjA0NQ.GgeH3P.5FN3iXAEUvCgy3bhvsZhNlQotYGnfOyJv5CPss";
-const CLIENT_ID = "1567893731351466045";
+// Express setup for Render 24/7 Uptime
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+    res.send('Bot is running 24/7 successfully!');
+});
+
+app.listen(PORT, () => {
+    console.log(`Uptime server is listening on port ${PORT}`);
+});
+
+const DISCORD_TOKEN = process.env.DISCORD_TOKEN || "MTU2Nzg5MzczMTM1MTQ2NjA0NQ.GgeH3P.5FN3iXAEUvCgy3bhvsZhNlQotYGnfOyJv5CPss";
+const CLIENT_ID = process.env.CLIENT_ID || "1567893731351466045";
 
 const client = new Client({
     intents: [
