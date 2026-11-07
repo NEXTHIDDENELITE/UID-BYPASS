@@ -1,6 +1,7 @@
+require('dotenv').config(); // Load environment variables from .env file
 const { Client, GatewayIntentBits, EmbedBuilder, REST, Routes, SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const axios = require('axios');
-const express = require('express'); // Added for 24/7 uptime
+const express = require('express');
 
 // Express setup for Render 24/7 Uptime
 const app = express();
@@ -14,8 +15,14 @@ app.listen(PORT, () => {
     console.log(`Uptime server is listening on port ${PORT}`);
 });
 
-const DISCORD_TOKEN = process.env.DISCORD_TOKEN || "MTU2Nzg5MzczMTM1MTQ2NjA0NQ.GgeH3P.5FN3iXAEUvCgy3bhvsZhNlQotYGnfOyJv5CPss";
-const CLIENT_ID = process.env.CLIENT_ID || "1567893731351466045";
+// Load credentials securely from environment variables
+const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
+const CLIENT_ID = process.env.CLIENT_ID;
+
+if (!DISCORD_TOKEN || !CLIENT_ID) {
+    console.error("ERROR: Missing DISCORD_TOKEN or CLIENT_ID in environment variables.");
+    process.exit(1);
+}
 
 const client = new Client({
     intents: [
